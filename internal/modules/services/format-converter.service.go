@@ -11,9 +11,9 @@ type IFormatConverterService interface {
 	AnsiToUnicode(text string) string
 }
 
-type FormatConverterService struct{}
+type formatConverterService struct{}
 
-func (FormatConverterService) UnicodeToAnsi(text string) string {
+func (formatConverterService) UnicodeToAnsi(text string) string {
 	var stringBuilder strings.Builder
 	for _, character := range text {
 		_, err := stringBuilder.WriteString(config.UnicodeToAnsi[string(character)])
@@ -24,7 +24,7 @@ func (FormatConverterService) UnicodeToAnsi(text string) string {
 	return stringBuilder.String()
 }
 
-func (FormatConverterService) AnsiToUnicode(text string) string {
+func (formatConverterService) AnsiToUnicode(text string) string {
 	var stringBuilder strings.Builder
 	for _, character := range text {
 		_, err := stringBuilder.WriteString(config.AnsiToUnicode[string(character)])
@@ -35,6 +35,6 @@ func (FormatConverterService) AnsiToUnicode(text string) string {
 	return stringBuilder.String()
 }
 
-func NewFormatConverterService() FormatConverterService {
-	return FormatConverterService{}
+func NewFormatConverterService() IFormatConverterService {
+	return formatConverterService{}
 }

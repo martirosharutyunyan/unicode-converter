@@ -1,16 +1,21 @@
 package services
 
-import "os"
+import (
+	"github.com/martirosharutyunyan/unicode-converter/internal/modules/utils"
+	"os"
+)
 
 type IConvertFileService interface {
-	ConvertTextFile(inputFilePath string, outputFilePath string, isAnsiToUnicode bool) error
+	ConvertFile(inputFilePath, outputFilePath string, isAnsiToUnicode bool) error
+	convertTextFile(inputFilePath, outputFilePath string, isAnsiToUnicode bool) error
+	convertExcelFile(inputFilePath, outputFilePath string, inAnsiToUnicode bool) error
 }
 
-type ConvertFileService struct {
+type convertFileService struct {
 	formatConverterService IFormatConverterService
 }
 
-func (s ConvertFileService) ConvertTextFile(inputFilePath string, outputFilePath string, isAnsiToUnicode bool) error {
+func (s convertFileService) convertTextFile(inputFilePath string, outputFilePath string, isAnsiToUnicode bool) error {
 	data, err := os.ReadFile(inputFilePath)
 	if err != nil {
 		return err
@@ -27,6 +32,19 @@ func (s ConvertFileService) ConvertTextFile(inputFilePath string, outputFilePath
 	return os.WriteFile(outputFilePath, []byte(output), 0777)
 }
 
+func (s convertFileService) convertExcelFile(inputFilePath, outputFilePath string, inAnsiToUnicode bool) error {
+
+	return nil
+}
+
+func (s convertFileService) ConvertFile(inputFilePath, outputFilePath string, isAnsiToUnicode bool) error {
+	isExcelFormat := utils.IsExcelFormat(inputFilePath)
+	if isExcelFormat {
+		return s.convertExcelFile(inputFilePath, outputFilePath, isAnsiToUnicode)
+	}
+	return s.convertTextFile(inputFilePath, outputFilePath, isAnsiToUnicode)
+}
+
 func NewConvertFileService() IConvertFileService {
-	return ConvertFileService{formatConverterService: NewFormatConverterService()}
+	return convertFileService{formatConverterService: NewFormatConverterService()}
 }

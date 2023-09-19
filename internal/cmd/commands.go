@@ -1,8 +1,11 @@
 package cmd
 
 import (
+	"errors"
+	"github.com/martirosharutyunyan/unicode-converter/internal/modules/services"
+	"github.com/martirosharutyunyan/unicode-converter/internal/modules/utils"
 	"github.com/spf13/cobra"
-	"log"
+	"path/filepath"
 )
 
 var rootCmd = &cobra.Command{
@@ -14,18 +17,55 @@ var convertCmd = &cobra.Command{
 	Use:   "convert",
 	Short: "Convert to Ansi and the other way around converter cli",
 	RunE: func(cmd *cobra.Command, args []string) error {
-		inputFile := cmd.Flag("file").Value.String()
-		outputFile := cmd.Flag("output-file").Value.String()
-		inputDir := cmd.Flag("dir").Value.String()
-		outputDir := cmd.Flag("outputDir").Value.String()
+		convertFileService := services.NewConvertFileService()
+		convertDirService := services.NewConvertDirService()
+
+		inputFilePath := cmd.Flag("file").Value.String()
+		outputFilePath := cmd.Flag("output-file").Value.String()
+		inputDirPath := cmd.Flag("dir").Value.String()
+		outputDirPath := cmd.Flag("output-dir").Value.String()
+		isAnsiToUnicode := cmd.Flag("to-unicode").Changed
+		isToUnicodeAnsi := cmd.Flag("to-ansi").Changed
+
+		if isToUnicodeAnsi {
+			isAnsiToUnicode = false
+		}
 
 		switch {
-		case inputFile == "" && inputDir == "":
-			log.Fatalln("Please transfer input file or directory")
-		case inputFile != "" && inputDir != "":
-			log.Fatalln("Please transfer input or output configs")
-		case inputFile != "":
+		case inputFilePath == "" && inputDirPath == "":
+			return errors.New("Please transfer input file or directory")
+		case inputFilePath != "" && inputDirPath != "":
+			return errors.New("Please transfer input or output configuration")
+		case inputFilePath != "":
+			var err error
+			if outputFilePath == "" {
+				outputFilePath, err = utils.GenCopyPath(inputFilePath)
+				if err != nil {
+					return err
+				}
+			}
 
+			inputFilePath, err := filepath.Abs(inputFilePath)
+			if err != nil {
+				return err
+			}
+
+			return convertFileService.ConvertFile(inputFilePath, outputFilePath, isAnsiToUnicode)
+		case inputDirPath != "":
+			var err error
+			if outputDirPath == "" {
+				outputDirPath, err = utils.GenCopyPath(inputDirPath)
+				if err != nil {
+					return err
+				}
+			}
+
+			inputDirPath, err := filepath.Abs(inputDirPath)
+			if err != nil {
+				return err
+			}
+
+			return convertDirService.ConvertDir(inputDirPath, outputDirPath, isAnsiToUnicode)
 		}
 
 		return nil

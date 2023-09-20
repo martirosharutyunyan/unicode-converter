@@ -8,3 +8,12 @@ build-win:
 
 clean:
 	rm -rf unicode-converter.exe
+
+lint:
+	golangci-lint run
+
+lint-fix:
+	golangci-lint run --fix
+
+tidy:
+	go mod tidy

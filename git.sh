@@ -1,3 +1,4 @@
-
 git add .
-git commit
+read -p "Enter commit: " COMMIT
+git commit -m "${COMMIT}"
+git push

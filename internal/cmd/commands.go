@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"errors"
+	"github.com/martirosharutyunyan/unicode-converter/internal/modules/desktop"
 	"github.com/martirosharutyunyan/unicode-converter/internal/modules/services"
 	"github.com/martirosharutyunyan/unicode-converter/internal/modules/utils"
 	"github.com/spf13/cobra"
@@ -11,7 +12,10 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "converter",
-	Short: "Unicode to Ansi and the other way round converter",
+	Short: "Unicode to Ansi and the other way round converter GUI tool",
+	Run: func(cmd *cobra.Command, args []string) {
+		desktop.App()
+	},
 }
 
 var convertCmd = &cobra.Command{

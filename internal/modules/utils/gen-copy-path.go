@@ -1,7 +1,6 @@
 package utils
 
 import (
-	"github.com/martirosharutyunyan/unicode-converter/internal/modules/constants"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -22,8 +21,9 @@ func GenCopyPath(inputPath string) (string, error) {
 		var builder strings.Builder
 		var indexString = strconv.Itoa(index)
 		builder.WriteString(absDirPath)
-		builder.WriteString("/copy-")
+		builder.WriteString("/copy")
 		builder.WriteString(indexString)
+		builder.WriteString("-")
 		builder.WriteString(basePath)
 
 		info, _ := os.Stat(builder.String())
@@ -36,17 +36,4 @@ func GenCopyPath(inputPath string) (string, error) {
 	}
 
 	return mainBuilder.String(), nil
-}
-
-func IsExcelFormat(inputFilePath string) bool {
-	fileName := filepath.Base(inputFilePath)
-	extension := strings.Split(fileName, ".")[1]
-
-	for _, format := range constants.EXCEL_FORMATS {
-		if format == extension {
-			return true
-		}
-	}
-
-	return false
 }

@@ -5,6 +5,7 @@ import (
 	"github.com/martirosharutyunyan/unicode-converter/internal/modules/services"
 	"github.com/martirosharutyunyan/unicode-converter/internal/modules/utils"
 	"github.com/spf13/cobra"
+	"os"
 	"path/filepath"
 )
 
@@ -58,6 +59,10 @@ var convertCmd = &cobra.Command{
 				if err != nil {
 					return err
 				}
+			}
+			err = os.Mkdir(outputDirPath, 0777)
+			if err != nil {
+				return err
 			}
 
 			inputDirPath, err := filepath.Abs(inputDirPath)

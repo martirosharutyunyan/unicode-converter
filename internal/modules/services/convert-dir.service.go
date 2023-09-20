@@ -2,8 +2,9 @@ package services
 
 import (
 	"io/fs"
-	"log"
+	"os"
 	"path/filepath"
+	"strings"
 )
 
 type IConvertDirService interface {
@@ -16,11 +17,32 @@ type convertDirService struct {
 
 func (s convertDirService) ConvertDir(inputDirPath, outputDirPath string, isAnsiToUnicode bool) error {
 	err := filepath.WalkDir(inputDirPath, func(path string, d fs.DirEntry, err error) error {
-		log.Println(path, "fdsfds")
+		if inputDirPath == path {
+			return nil
+		}
+
+		info, err := os.Stat(path)
+		if err != nil {
+			return err
+		}
+
+		fileRelativePath := strings.Split(path, inputDirPath)[1]
+
+		var builder strings.Builder
+		builder.WriteString(outputDirPath)
+		builder.WriteString(fileRelativePath)
+
+		if info.IsDir() {
+			err = os.Mkdir(builder.String(), 0777)
+			if err != nil {
+				return err
+			}
+		} else {
+			return s.convertFileService.ConvertFile(path, builder.String(), isAnsiToUnicode)
+		}
 
 		return err
 	})
-	log.Println(inputDirPath, outputDirPath)
 
 	if err != nil {
 		return err

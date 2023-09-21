@@ -11,8 +11,8 @@ import (
 func App() {
 	converterApp := app.New()
 	window := converterApp.NewWindow("Converter")
-
 	window.Resize(fyne.NewSize(1000, 500))
+
 	inputEntry := widget.NewEntry()
 
 	openFileButton := widget.NewButton("Open File", func() {
@@ -25,13 +25,22 @@ func App() {
 	})
 
 	// Create a simple UI layout
+	label := widget.NewLabel("Input file path")
+
 	content := container.NewVBox(
 		openFileButton,
+		label,
 		inputEntry,
 	)
 	content.Resize(fyne.NewSize(100, 30))
 
-	window.SetContent(content)
+	tabs := container.NewAppTabs(
+		container.NewTabItem("Convert file or directory", content),
+		container.NewTabItem("Convert Text", widget.NewLabel("Convert text")))
+
+	tabs.SetTabLocation(container.TabLocationLeading)
+
+	window.SetContent(tabs)
 	window.Show()
 
 	converterApp.Run()

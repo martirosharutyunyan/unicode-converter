@@ -1,6 +1,6 @@
 module github.com/martirosharutyunyan/unicode-converter
 
-go 1.21.0
+go 1.21
 
 require (
 	fyne.io/fyne/v2 v2.4.0

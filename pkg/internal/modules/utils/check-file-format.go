@@ -9,7 +9,8 @@ import (
 
 func CheckFormat(inputFilePath string) (constants2.SupportedFileFormatEnum, error) {
 	fileName := filepath.Base(inputFilePath)
-	extension := strings.Split(fileName, ".")[1]
+	attributes := strings.Split(fileName, ".")
+	extension := attributes[len(attributes)-1]
 
 	for _, format := range constants2.EXCEL_FORMATS {
 		if format == extension {

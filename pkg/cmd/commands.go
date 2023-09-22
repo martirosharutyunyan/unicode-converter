@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	"errors"
 	"github.com/martirosharutyunyan/unicode-converter/pkg/internal/modules/services"
+	static_errors "github.com/martirosharutyunyan/unicode-converter/pkg/internal/modules/static-errors"
 	"github.com/martirosharutyunyan/unicode-converter/pkg/internal/modules/utils"
 	"github.com/spf13/cobra"
 	"os"
@@ -30,7 +30,7 @@ var convertDirCmd = &cobra.Command{
 		}
 
 		if inputDirPath == "" {
-			return errors.New("Please transfer input directory")
+			return static_errors.TRANSFER_SOURCE_ERR
 		}
 
 		var err error
@@ -70,7 +70,7 @@ var convertFileCmd = &cobra.Command{
 		}
 
 		if inputFilePath == "" {
-			return errors.New("Please transfer input file")
+			return static_errors.TRANSFER_SOURCE_ERR
 		}
 
 		var err error

@@ -4,44 +4,27 @@ import (
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/container"
-	"fyne.io/fyne/v2/dialog"
-	"fyne.io/fyne/v2/widget"
+	"os"
 )
 
 func App() {
 	converterApp := app.New()
 	window := converterApp.NewWindow("Converter")
-	window.Resize(fyne.NewSize(1000, 500))
+	window.Resize(fyne.NewSize(1100, 600))
 
-	inputEntry := widget.NewEntry()
-
-	openFileButton := widget.NewButton("Open File", func() {
-		dialog.ShowFileOpen(func(uri fyne.URIReadCloser, err error) {
-			if uri != nil {
-				defer uri.Close()
-				inputEntry.SetText((uri.URI()).Path())
-			}
-		}, window)
-	})
-
-	// Create a simple UI layout
-	label := widget.NewLabel("Input file path")
-
-	content := container.NewVBox(
-		openFileButton,
-		label,
-		inputEntry,
-	)
-	content.Resize(fyne.NewSize(100, 30))
-
+	sourceConverterTab := container.NewTabItem("Convert Source", ConvertSourceContainer(window))
+	textConverterTab := container.NewTabItem("Convert Text", ConvertTextContainer(window))
 	tabs := container.NewAppTabs(
-		container.NewTabItem("Convert file or directory", content),
-		container.NewTabItem("Convert Text", widget.NewLabel("Convert text")))
+		textConverterTab,
+		sourceConverterTab,
+	)
 
 	tabs.SetTabLocation(container.TabLocationLeading)
+	tabs.Select(textConverterTab)
 
 	window.SetContent(tabs)
 	window.Show()
 
 	converterApp.Run()
+	os.Exit(0)
 }

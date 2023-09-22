@@ -1,10 +1,10 @@
 default: run
 
 run:
-	go run ./cmd/unicode-converter/
+	go run ./cmd/unicode-converter-gui/
 
 build-win:
-	GOOS=windows GOARCH=amd64 go build ./cmd/unicode-converter
+	cd ./cmd/unicode-converter-gui && make build && cd ../../
 
 clean:
 	rm -rf unicode-converter.exe

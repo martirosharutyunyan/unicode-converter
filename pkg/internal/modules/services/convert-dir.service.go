@@ -44,11 +44,7 @@ func (s convertDirService) ConvertDir(inputDirPath, outputDirPath string, isUnic
 		return err
 	})
 
-	if err != nil {
-		return err
-	}
-
-	return nil
+	return err
 }
 
 func NewConvertDirService() IConvertDirService {

@@ -2,6 +2,7 @@ package services
 
 import (
 	"github.com/martirosharutyunyan/unicode-converter/pkg/internal/modules/constants"
+	static_errors "github.com/martirosharutyunyan/unicode-converter/pkg/internal/modules/static-errors"
 	"github.com/martirosharutyunyan/unicode-converter/pkg/internal/modules/utils"
 	"github.com/nguyenthenguyen/docx"
 	"github.com/tealeg/xlsx/v3"
@@ -116,7 +117,7 @@ func (s convertFileService) ConvertFile(inputFilePath, outputFilePath string, is
 		return s.convertTextFile(inputFilePath, outputFilePath, isUnicodeToAnsi)
 	}
 
-	return nil
+	return static_errors.NOT_SUPPORTED_FORMAT_ERR
 }
 
 func NewConvertFileService() IConvertFileService {

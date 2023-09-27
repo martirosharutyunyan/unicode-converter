@@ -3,8 +3,11 @@ default: run
 run:
 	go run ./cmd/unicode-converter-gui/
 
-build-win:
-	cd ./cmd/unicode-converter-gui && make build && cd ../../
+cli-build:
+	go build -o unicode-converter ./cmd/unicode-converter-cli
+
+cli-build-win:
+	GOOS=windows go build -o unicode-converter.exe ./cmd/unicode-converter-cli
 
 clean:
 	rm -rf unicode-converter.exe

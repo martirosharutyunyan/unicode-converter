@@ -1,7 +1,7 @@
 package main
 
-import "github.com/martirosharutyunyan/unicode-converter/pkg/desktop"
+import "github.com/martirosharutyunyan/unicode-converter/internal/desktop"
 
 func main() {
-	desktop.App()
+	desktop.Run()
 }

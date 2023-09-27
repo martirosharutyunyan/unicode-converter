@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/martirosharutyunyan/unicode-converter/pkg/cmd"
+	"github.com/martirosharutyunyan/unicode-converter/internal/cmd"
 	"os"
 )
 

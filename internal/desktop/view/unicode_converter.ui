@@ -17,7 +17,7 @@
    <widget class="QTabWidget" name="TextConverter">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>-10</x>
       <y>0</y>
       <width>821</width>
       <height>621</height>
@@ -36,7 +36,7 @@
      <attribute name="title">
       <string>Convert Text</string>
      </attribute>
-     <widget class="QTextEdit" name="textEdit">
+     <widget class="QTextEdit" name="UnicodeArea">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -46,7 +46,7 @@
        </rect>
       </property>
      </widget>
-     <widget class="QTextEdit" name="textEdit_2">
+     <widget class="QTextEdit" name="AnsiArea">
       <property name="geometry">
        <rect>
         <x>400</x>
@@ -97,7 +97,7 @@
      <attribute name="title">
       <string>Convert Source</string>
      </attribute>
-     <widget class="QRadioButton" name="radioButton_3">
+     <widget class="QRadioButton" name="UnicodeToAnsi">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -110,7 +110,7 @@
        <string>Unicode to Ansi</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton_4">
+     <widget class="QRadioButton" name="AnsiToUnicode">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -123,20 +123,20 @@
        <string>Ansi to Unicode</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit">
+     <widget class="QLineEdit" name="InputSource">
       <property name="geometry">
        <rect>
         <x>20</x>
         <y>120</y>
-        <width>441</width>
+        <width>721</width>
         <height>32</height>
        </rect>
       </property>
       <property name="placeholderText">
-       <string>Output source</string>
+       <string>Input source</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="SaveButton">
       <property name="geometry">
        <rect>
         <x>690</x>
@@ -149,7 +149,7 @@
        <string>Save</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="OpenFileButton">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -162,7 +162,7 @@
        <string>Open file</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_3">
+     <widget class="QPushButton" name="OpenFolderButton">
       <property name="geometry">
        <rect>
         <x>120</x>
@@ -173,6 +173,19 @@
       </property>
       <property name="text">
        <string>Open Folder</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="OutputSource">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>160</y>
+        <width>721</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Output source</string>
       </property>
      </widget>
     </widget>

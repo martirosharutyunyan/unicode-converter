@@ -1,7 +1,7 @@
 default: run
 
 run:
-	go run ./cmd/unicode-converter-gui/
+	QT_QPA_PLATFORM=xcb go run ./cmd/unicode-converter-gui/
 
 cli-build:
 	go build -o unicode-converter ./cmd/unicode-converter-cli
@@ -20,3 +20,9 @@ lint-fix:
 
 tidy:
 	go mod tidy
+
+qt-ui:
+	goqtuic -ui-file ./internal/desktop/view/unicode_converter.ui -go-ui-dir ./internal/desktop/uigen
+
+gen:
+	go generate ./...

@@ -12,11 +12,11 @@ func Execute(args []string, Stdin, Stdout, Stderr *os.File) {
 	rootCmd.PersistentFlags().Bool("to-unicode", true, "Parse Ansi to Unicode")
 	rootCmd.PersistentFlags().Bool("to-ansi", false, "Parse Unicode to Ansi")
 
-	convertFileCmd.PersistentFlags().String("file", "", "input file name")
-	convertFileCmd.PersistentFlags().String("output-file", "", "output file path optional")
+	convertFileCmd.PersistentFlags().String("source", "", "input file name")
+	convertFileCmd.PersistentFlags().String("output", "", "output file path optional")
 
-	convertDirCmd.PersistentFlags().String("dir", "", "input dir entry file")
-	convertDirCmd.PersistentFlags().String("output-dir", "", "output dir entry optional")
+	convertDirCmd.PersistentFlags().String("source", "", "input dir entry file")
+	convertDirCmd.PersistentFlags().String("output", "", "output dir entry optional")
 
 	rootCmd.SetArgs(args)
 	rootCmd.SetIn(Stdin)

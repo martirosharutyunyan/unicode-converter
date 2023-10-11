@@ -7,10 +7,14 @@ import (
 )
 
 func Run() {
+
 	ui := new(uigen.UIUnicodeConverterMainWindow)
 	qApp := widgets.NewQApplication(len(os.Args), os.Args)
 	mainWindow := widgets.NewQMainWindow(nil, 0)
 	ui.SetupUI(mainWindow)
+
+	AreaTabEvents(ui)
+	FileTabEvents(ui)
 
 	mainWindow.Show()
 	qApp.Exec()

@@ -20,8 +20,8 @@ var convertDirCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		convertDirService := services2.NewConvertDirService()
 
-		inputDirPath := cmd.Flag("dir").Value.String()
-		outputDirPath := cmd.Flag("output-dir").Value.String()
+		inputDirPath := cmd.Flag("source").Value.String()
+		outputDirPath := cmd.Flag("output").Value.String()
 		isAnsiToUnicode := cmd.Flag("to-unicode").Changed
 		isToUnicodeAnsi := cmd.Flag("to-ansi").Changed
 
@@ -60,8 +60,8 @@ var convertFileCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		convertFileService := services2.NewConvertFileService()
 
-		inputFilePath := cmd.Flag("file").Value.String()
-		outputFilePath := cmd.Flag("output-file").Value.String()
+		inputFilePath := cmd.Flag("source").Value.String()
+		outputFilePath := cmd.Flag("output").Value.String()
 		isAnsiUnicode := cmd.Flag("to-unicode").Changed
 		isUnicodeAnsi := cmd.Flag("to-ansi").Changed
 

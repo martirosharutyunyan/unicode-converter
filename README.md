@@ -6,7 +6,10 @@ Steps For installation development environment and packaging application in arch
 5. Run ```sudo QT_DIR=$QT5.13.0_INSTALL_PATH qtsetup``` for installing dependencies in vendor
 6. For linux packaging run ```cd ./cmd/unicode-converter-gui``` and execute ```sudo QT_DIR=$QT5.13.0_INSTALL_PATH qtdeploy build linux```
 7. Docker pull therecipe/qt:windows_64_static
-8. For windows packaging run ```cd ./cmd/unicode-converter-gui``` and execute ```sudo qtdeploy -docker build windows_64_static```
+8. rsrc install for application icon ```go install github.com/akavel/rsrc@latest```
+9. rsrc -ico icon.ico -o icon.syso -arch=amd64 for setting the application icon replace the icon.ico file with your icon
+10. For windows packaging run ```cd ./cmd/unicode-converter-gui``` and execute ```sudo qtdeploy -docker build windows_64_static```
+
 
 Steps for installation cli application
 1. make tidy

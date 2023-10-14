@@ -1,6 +1,6 @@
-./*/**.exe
-./*/**.out
-cmd/unicode-converter-gui/deploy
-cmd/unicode-converter-gui/windows
-cmd/unicode-converter-gui/linux
-vendor
+/*/**.exe
+/*/**.out
+/cmd/unicode-converter-gui/deploy
+/cmd/unicode-converter-gui/windows
+/cmd/unicode-converter-gui/linux
+/vendor

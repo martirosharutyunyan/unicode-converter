@@ -30,7 +30,7 @@
      </size>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="TextConverter_2">
      <attribute name="title">
@@ -39,7 +39,7 @@
      <widget class="QTextEdit" name="UnicodeArea">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>30</x>
         <y>60</y>
         <width>361</width>
         <height>371</height>
@@ -49,7 +49,7 @@
      <widget class="QTextEdit" name="AnsiArea">
       <property name="geometry">
        <rect>
-        <x>400</x>
+        <x>420</x>
         <y>60</y>
         <width>361</width>
         <height>371</height>

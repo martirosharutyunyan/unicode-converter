@@ -38,10 +38,10 @@ func (this *UIUnicodeConverterMainWindow) SetupUI(MainWindow *widgets.QMainWindo
 	this.TextConverter2.SetObjectName("TextConverter2")
 	this.UnicodeArea = widgets.NewQTextEdit(this.TextConverter2)
 	this.UnicodeArea.SetObjectName("UnicodeArea")
-	this.UnicodeArea.SetGeometry(core.NewQRect4(10, 60, 361, 371))
+	this.UnicodeArea.SetGeometry(core.NewQRect4(30, 60, 361, 371))
 	this.AnsiArea = widgets.NewQTextEdit(this.TextConverter2)
 	this.AnsiArea.SetObjectName("AnsiArea")
-	this.AnsiArea.SetGeometry(core.NewQRect4(400, 60, 361, 371))
+	this.AnsiArea.SetGeometry(core.NewQRect4(420, 60, 361, 371))
 	this.Label = widgets.NewQLabel(this.TextConverter2, core.Qt__Widget)
 	this.Label.SetObjectName("Label")
 	this.Label.SetGeometry(core.NewQRect4(150, 20, 71, 18))
@@ -84,7 +84,7 @@ func (this *UIUnicodeConverterMainWindow) SetupUI(MainWindow *widgets.QMainWindo
 
 
     this.RetranslateUi(MainWindow)
-	this.TextConverter.SetCurrentIndex(1)
+	this.TextConverter.SetCurrentIndex(0)
 }
 
 func (this *UIUnicodeConverterMainWindow) RetranslateUi(MainWindow *widgets.QMainWindow) {

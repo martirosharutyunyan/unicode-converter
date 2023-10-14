@@ -4,6 +4,7 @@ import (
 	"io/fs"
 	"os"
 	"path/filepath"
+	"runtime"
 	"strings"
 )
 
@@ -24,6 +25,10 @@ func (s convertDirService) ConvertDir(inputDirPath, outputDirPath string, isUnic
 		info, err := os.Stat(path)
 		if err != nil {
 			return err
+		}
+
+		if runtime.GOOS == "windows" {
+			path = strings.ReplaceAll(path, "\\", "/")
 		}
 
 		fileRelativePath := strings.Split(path, inputDirPath)[1]

@@ -14,8 +14,6 @@ func FileTabEvents(ui *uigen.UIUnicodeConverterMainWindow) {
 
 	var isFile bool
 
-	ui.OutputSource.SetReadOnly(true)
-
 	ui.AnsiToUnicode.SetChecked(true)
 	ui.OpenFileButton.ConnectClicked(func(_ bool) {
 		options := widgets.QFileDialog__ReadOnly
@@ -53,16 +51,20 @@ func FileTabEvents(ui *uigen.UIUnicodeConverterMainWindow) {
 			err := convertFileService.ConvertFile(inputSource, outputSource, ui.UnicodeToAnsi.IsChecked())
 			if err != nil {
 				AlertError(err)
+				return
 			}
 		} else {
 			err := os.Mkdir(outputSource, 0777)
 			if err != nil {
 				AlertError(err)
+				return
 			}
 			err = convertDirService.ConvertDir(inputSource, outputSource, ui.UnicodeToAnsi.IsChecked())
 			if err != nil {
 				AlertError(err)
+				return
 			}
 		}
+		AlertOk("Files Generated")
 	})
 }

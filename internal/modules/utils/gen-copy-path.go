@@ -3,6 +3,7 @@ package utils
 import (
 	"os"
 	"path/filepath"
+	"runtime"
 	"strconv"
 	"strings"
 )
@@ -50,7 +51,11 @@ func GenCopyPath(inputPath string) (string, error) {
 		break
 	}
 
+	if runtime.GOOS == "windows" {
+		sourcePath := mainBuilder.String()
+		sourcePath = strings.ReplaceAll(sourcePath, "\\", "/")
+		return sourcePath, nil
+	}
+
 	return mainBuilder.String(), nil
 }
-
-// tests/test-files-copy1.t.t/excel.xlsx

@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	services2 "github.com/martirosharutyunyan/unicode-converter/internal/modules/services"
+	"github.com/martirosharutyunyan/unicode-converter/internal/modules/services"
 	"github.com/martirosharutyunyan/unicode-converter/internal/modules/static-errors"
 	"github.com/martirosharutyunyan/unicode-converter/internal/modules/utils"
 	"github.com/spf13/cobra"
@@ -18,7 +18,7 @@ var convertDirCmd = &cobra.Command{
 	Use:   "dir",
 	Short: "Convert directory",
 	RunE: func(cmd *cobra.Command, args []string) error {
-		convertDirService := services2.NewConvertDirService()
+		convertDirService := services.NewConvertDirService()
 
 		inputDirPath := cmd.Flag("source").Value.String()
 		outputDirPath := cmd.Flag("output").Value.String()
@@ -58,7 +58,7 @@ var convertFileCmd = &cobra.Command{
 	Use:   "file",
 	Short: "Convert file",
 	RunE: func(cmd *cobra.Command, args []string) error {
-		convertFileService := services2.NewConvertFileService()
+		convertFileService := services.NewConvertFileService()
 
 		inputFilePath := cmd.Flag("source").Value.String()
 		outputFilePath := cmd.Flag("output").Value.String()
